@@ -26,6 +26,26 @@
     android:clipToPadding="false">
 
     <LinearLayout
+        android:id="@+id/text_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minWidth="44dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp">
+        <TextView
+            android:id="@+id/seekBarPrefValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:singleLine="false"
+            android:ellipsize="end"
+            android:textAppearance="@android:style/TextAppearance.Material.Body1"
+            android:textColor="?android:attr/textColorSecondary"/>
+    </LinearLayout>
+
+    <LinearLayout
         android:id="@android:id/icon_frame"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -142,4 +162,19 @@
         android:gravity="end|center_vertical"
         android:paddingStart="16dp"
         android:orientation="vertical" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp">
+        <LinearLayout android:id="@+id/seekBarPrefBarContainer"
+            android:layout_gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+                <SeekBar
+                    android:id="@+id/customSeekBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+        </LinearLayout>
+    </FrameLayout>
 </LinearLayout>
