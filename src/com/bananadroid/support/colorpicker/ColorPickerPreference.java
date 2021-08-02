@@ -54,7 +54,7 @@ public class ColorPickerPreference extends Preference implements
     PreferenceViewHolder mView;
     LinearLayout mWidgetFrameView;
     ColorPickerDialog mDialog;
-    private int mDefaultValue = Color.BLACK;
+    private int mDefaultValue = Color.parseColor("#f3d324");
     private int mCurrentValue = mDefaultValue;
     private float mDensity = 0;
     private boolean mAlphaSliderEnabled = false;
@@ -89,7 +89,7 @@ public class ColorPickerPreference extends Preference implements
 
     @Override
     protected Object onGetDefaultValue(TypedArray ta, int index) {
-        int defaultValue = ta.getInt(index, Color.BLACK);
+        int defaultValue = ta.getInt(index, Color.parseColor("#f3d324"));
         return defaultValue;
     }
 
@@ -99,8 +99,8 @@ public class ColorPickerPreference extends Preference implements
         // so we load the persistent value with getPersistedInt if available in the data store,
         // and use defaultValue as fallback (onGetDefaultValue has been already called and it loaded the android:defaultValue attr from our xml).
         if (defaultValue == null) {
-            // if we forgot to add android:defaultValue, default to black color
-            defaultValue = Color.BLACK;
+            // if we forgot to add android:defaultValue, default to banana color
+            defaultValue = Color.parseColor("#f3d324");
         }
         mCurrentValue = getPersistedInt((Integer) defaultValue);
         onColorChanged(mCurrentValue);
@@ -111,7 +111,7 @@ public class ColorPickerPreference extends Preference implements
         setOnPreferenceClickListener(this);
         if (attrs != null) {
             mAlphaSliderEnabled = attrs.getAttributeBooleanValue(null, "alphaSlider", false);
-            mDefaultValue = attrs.getAttributeIntValue(ANDROIDNS, "defaultValue", Color.BLACK);
+            mDefaultValue = attrs.getAttributeIntValue(ANDROIDNS, "defaultValue", Color.parseColor("#f3d324"));
             mShowReset = attrs.getAttributeBooleanValue(SETTINGS_NS, "showReset", true);
             mShowPreview = attrs.getAttributeBooleanValue(SETTINGS_NS, "showPreview", true);
             mDividerAbove = attrs.getAttributeBooleanValue(SETTINGS_NS, "dividerAbove", false);
