@@ -21,6 +21,7 @@ android_library {
         "com.google.android.material_material",
         "kotlinx_coroutines_android",
         "kotlinx_coroutines",
+        "SettingsLibMainSwitchPreference",
     ],
 
     resource_dirs: ["res"],
