@@ -6,10 +6,7 @@ android_library {
         enabled: false,
     },
 
-    srcs: [
-        "src/**/*.java",
-        "src/**/*.kt"
-    ],
+    srcs: ["src/**/*.java"],
 
     static_libs: [
         "androidx.cardview_cardview",
@@ -24,14 +21,9 @@ android_library {
         "com.google.android.material_material",
         "kotlinx_coroutines_android",
         "kotlinx_coroutines",
-        "zxing-core-1.7",
         "SettingsLib",
     ],
 
-    resource_dirs: [
-        "res",
-        "res-orig",
-        "res-qr"
-    ],
+    resource_dirs: ["res"],
 
 }
