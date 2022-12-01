@@ -60,4 +60,9 @@
         <attr name="civ_border_width" format="dimension"/>
         <attr name="civ_border_color" format="color"/>
     </declare-styleable>
+
+    <!-- Base attributes available to OverlaySwitchPreference. -->
+    <declare-styleable name="OverlaySwitchPreference">
+        <attr name="dkey" format="string" />
+    </declare-styleable>
 </resources>
