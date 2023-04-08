@@ -32,7 +32,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.settingslib.utils.ColorUtil;
+import androidx.preference.PreferenceViewHolder;
 
 import com.banana.support.R;
 
@@ -254,8 +254,8 @@ public class CustomSeekBarPreference extends Preference implements SeekBar.OnSee
         if (mMinusImageView != null) {
             if (mValue == mMinValue || mTrackingTouch) {
                 mMinusImageView.setClickable(false);
-                mMinusImageView.setAlpha(
-                        (int) (255 * ColorUtil.getDisabledAlpha(getContext())));
+                mMinusImageView.setColorFilter(getContext().getColor(R.color.disabled_text_color),
+                    PorterDuff.Mode.MULTIPLY);
             } else {
                 mMinusImageView.setClickable(true);
                 mMinusImageView.clearColorFilter();
@@ -264,8 +264,7 @@ public class CustomSeekBarPreference extends Preference implements SeekBar.OnSee
         if (mPlusImageView != null) {
             if (mValue == mMaxValue || mTrackingTouch) {
                 mPlusImageView.setClickable(false);
-                mPlusImageView.setAlpha(
-                        (int) (255 * ColorUtil.getDisabledAlpha(getContext())));
+                mPlusImageView.setColorFilter(getContext().getColor(R.color.disabled_text_color), PorterDuff.Mode.MULTIPLY);
             } else {
                 mPlusImageView.setClickable(true);
                 mPlusImageView.clearColorFilter();
