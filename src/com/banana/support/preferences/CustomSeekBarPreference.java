@@ -1,6 +1,6 @@
 /*
  * Copyright (C) 2016 The Dirty Unicorns Project
- * Copyright (C) 2016-2020 crDroid Android Project
+ * Copyright (C) 2016-2023 crDroid Android Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,6 +17,7 @@
 
 package com.banana.support.preferences;
 
+import android.annotation.ColorInt;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.PorterDuff;
@@ -254,8 +255,8 @@ public class CustomSeekBarPreference extends Preference implements SeekBar.OnSee
         if (mMinusImageView != null) {
             if (mValue == mMinValue || mTrackingTouch) {
                 mMinusImageView.setClickable(false);
-                mMinusImageView.setColorFilter(getContext().getColor(R.color.disabled_text_color),
-                    PorterDuff.Mode.MULTIPLY);
+                mMinusImageView.setColorFilter(getColorAttrDefaultColor(getContext(), android.R.attr.textColorTertiary),
+                    PorterDuff.Mode.SRC_IN);
             } else {
                 mMinusImageView.setClickable(true);
                 mMinusImageView.clearColorFilter();
@@ -264,12 +265,29 @@ public class CustomSeekBarPreference extends Preference implements SeekBar.OnSee
         if (mPlusImageView != null) {
             if (mValue == mMaxValue || mTrackingTouch) {
                 mPlusImageView.setClickable(false);
-                mPlusImageView.setColorFilter(getContext().getColor(R.color.disabled_text_color), PorterDuff.Mode.MULTIPLY);
+                mPlusImageView.setColorFilter(getColorAttrDefaultColor(getContext(), android.R.attr.textColorTertiary),
+                    PorterDuff.Mode.SRC_IN);
             } else {
                 mPlusImageView.setClickable(true);
                 mPlusImageView.clearColorFilter();
             }
         }
+    }
+
+    @ColorInt
+    public static int getColorAttrDefaultColor(Context context, int attr) {
+        return getColorAttrDefaultColor(context, attr, 0);
+    }
+
+    /**
+     * Get color styled attribute {@code attr}, default to {@code defValue} if not found.
+     */
+    @ColorInt
+    public static int getColorAttrDefaultColor(Context context, int attr, @ColorInt int defValue) {
+        TypedArray ta = context.obtainStyledAttributes(new int[]{attr});
+        @ColorInt int colorAccent = ta.getColor(0, defValue);
+        ta.recycle();
+        return colorAccent;
     }
 
     protected void changeValue(int newValue) {
