@@ -1,20 +1,18 @@
 /*
- * Copyright (C) 2016 The Dirty Unicorns Project
  * Copyright (C) 2016-2023 crDroid Android Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
- * limitations under the License
+ * limitations under the License.
  */
-
 package com.banana.support.preferences;
 
 import android.annotation.ColorInt;
@@ -32,8 +30,6 @@ import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import androidx.preference.PreferenceViewHolder;
 
 import com.banana.support.R;
 
@@ -105,6 +101,7 @@ public class CustomSeekBarPreference extends Preference implements SeekBar.OnSee
         }
 
         mSeekBar = new SeekBar(context, attrs);
+        mSeekBar.setMax(mMaxValue);
         setLayoutResource(R.layout.preference_custom_seekbar);
     }
 
@@ -216,6 +213,16 @@ public class CustomSeekBarPreference extends Preference implements SeekBar.OnSee
         return v < mMinValue ? mMinValue : (v > mMaxValue ? mMaxValue : v);
     }
 
+    public void setMax(int max) {
+        mMaxValue = max;
+        mSeekBar.setMax(mMaxValue);
+    }
+
+    public void setMin(int min) {
+        mMinValue = min;
+        mSeekBar.setMax(mMaxValue - mMinValue);
+    }
+
     protected int getSeekValue(int v) {
         return 0 - Math.floorDiv(mMinValue - v, mInterval);
     }
@@ -242,7 +249,7 @@ public class CustomSeekBarPreference extends Preference implements SeekBar.OnSee
                 if (mDefaultValueTextExists && mDefaultValueExists && mTrackingValue == mDefaultValue) {
                     mValueTextView.setText("[" + mDefaultValueText + "]");
                 } else {
-                    mValueTextView.setText(getContext().getString(R.string.custom_seekbar_value, getTextValue(mTrackingValue)));
+                    mValueTextView.setText(getContext().getString(R.string.custom_seekbar_value, "[" + getTextValue(mTrackingValue) + "]"));
                 }
             }
         }
